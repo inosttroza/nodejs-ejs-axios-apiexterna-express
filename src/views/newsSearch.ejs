@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ino News</title>
+    <link rel='icon' href='/img/favicon.ico' class='js-favicon'>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">Portal de noticias- Node.Js/ EJS</div>
+        <%- include('./partials/search.ejs') %>
+    </header>
+
+    <div class="wrapper">
+        <div class="news">
+            <% if(articles != null) { %>
+
+                <% articles.forEach(function(x) { %>
+
+                    <a href="<%- x.url %>" class="news__card">
+                    <p><%- x.publishedAt.replace(/T/, ' ').replace(/\..+/, '') %></p>
+                    <img src="<%- x.urlToImage %>" alt="<%- x.title %>">
+                    <h2><%- x.title %></h2>
+                    <p><%- x.description %></p>
+                </a>
+          
+            <% }) %>         
+
+
+            <% } else { %>
+                No posts found.
+            <% } %>
+        </div>
+    </div>  
+</body>
+</html> 
+
+<!-- formateo fechas
+original= "2021-09-07T18:09:00Z"
+formateada= "2021-09-07 18:09:00Z" -->
